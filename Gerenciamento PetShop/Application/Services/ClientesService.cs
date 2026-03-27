@@ -28,7 +28,7 @@ namespace Gerenciamento_PetShop.Application.Services
 
             cliente = new Clientes(clientesViewModel.Cpf, clientesViewModel.Nome, clientesViewModel.DataNascimento);
 
-            _clientesRepository.Add(cliente);
+            //_clientesRepository.Add(cliente);
         }
         public byte[] Baixar(string cpf)
         {

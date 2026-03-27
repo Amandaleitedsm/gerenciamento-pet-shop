@@ -166,3 +166,4 @@ C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\Gerenciamento PetShop\obj\Debug\net10.0\Gerenciamento PetShop.pdb
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\Gerenciamento PetShop\obj\Debug\net10.0\Gerenciamento PetShop.genruntimeconfig.cache
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\Gerenciamento PetShop\obj\Debug\net10.0\ref\Gerenciamento PetShop.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\Gerenciamento PetShop\obj\Debug\net10.0\Gerenciamento PetShop.sourcelink.json
