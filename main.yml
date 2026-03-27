@@ -1,0 +1,34 @@
+name: Pipeline de Testes PetShop
+
+# Quando o robô deve trabalhar?
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # O GitHub vai usar um Linux zerado
+
+    steps:
+    # 1. Baixa o seu código para a máquina do GitHub
+    - uses: actions/checkout@v4
+
+    # 2. Instala o .NET (Ajustado para o seu net10.0)
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x' 
+
+    # 3. Restaura as bibliotecas (Moq, xUnit, EF Core)
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # 4. Compila o projeto para ver se não tem erro de sintaxe
+    - name: Build
+      run: dotnet build --no-restore
+
+    # 5. O momento da verdade: Roda os testes!
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

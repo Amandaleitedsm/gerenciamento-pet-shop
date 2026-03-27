@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gerenciamento PetShop</name>
+    </assembly>
+    <members>
+        <member name="T:Gerenciamento_PetShop.Migrations.primeira">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.primeira.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.primeira.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.primeira.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Presentation.Controllers.ClientesController.Get(System.Int32,System.Int32)">
+            <summary>
+            Busca todos os clientes
+            </summary>
+            <description>Busca todos os clientes, podendo filtrar por página (equivalência 1 -> página 1) com quantidades de clientes</description>
+            <param name="pageNumber">Ordem da página que deseja buscar</param>
+            <param name="pageQuantity">Quantos clientes devem existir por página</param>
+            <returns>Dados dos clientes cadastrados</returns>
+            <response code="200">Clientes retornados</response>
+        </member>
+        <member name="P:Gerenciamento_PetShop.Presentation.ViewModel.ClientesViewModel.DataNascimento">
+            <summary>
+            Data de nascimento do cliente.
+            </summary>
+        </member>
+    </members>
+</doc>

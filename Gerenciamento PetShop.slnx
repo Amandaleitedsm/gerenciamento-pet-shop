@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="main.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Gerenciamento PetShop/Gerenciamento PetShop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="GerenciamentoPetShop.Testes/GerenciamentoPetShop.Testes.csproj" Id="61c0e0ac-8021-4a16-8d68-2bb98d84120f" />
+  </Folder>
+</Solution>
