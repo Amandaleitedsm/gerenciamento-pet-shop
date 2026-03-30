@@ -51,20 +51,18 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var cpfDesejado = "12312452323";
             var bytesFalsos = new byte[] { 0x20, 0x20, 0x20 };
 
-            var clientesFake = new List<Clientes> {
-                new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
-                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2", Photo = caminhoEsperado }
-            };
+            var clienteFake = new Clientes { CPF = cpfDesejado, Nome = "Cliente 1", Photo = caminhoEsperado};
             repoMock
-                 .Setup(s => s.Get(It.IsAny<int>(), It.IsAny<int>()))
-                 .Returns(clientesFake);
+                 .Setup(s => s.Get(cpfDesejado))
+                 .Returns(clienteFake);
 
             // Se o seu método LerArquivo retorna bytes ou string, você pode configurar o retorno aqui:
-            fileMock.Setup(f => f.LerArquivo(caminhoEsperado)).Returns(bytesFalsos);
+            fileMock
+                .Setup(f => f.LerArquivo(caminhoEsperado))
+                .Returns(bytesFalsos);
 
-            var resultado = service.Baixar(cpfDesejado);
             // 2. ACT - Chamamos a ação real
-            var arquivo = service.Baixar(cpfDesejado);
+            var resultado = service.Baixar(cpfDesejado);
             fileMock.Verify(f => f.LerArquivo(It.Is<string>(path => path == caminhoEsperado)), Times.Once);
 
             // Verifica se o service realmente retornou os bytes que o mock enviou
