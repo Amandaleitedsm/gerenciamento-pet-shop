@@ -29,19 +29,19 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-      # 5. Roda os testes coletando a cobertura
+     # 5. Roda os testes com o coletor nativo do .NET
     - name: Test with Coverage
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
 
-    # 6. Gera um relatório legível (Opcional, mas muito legal)
+    # 6. Gera o relatório (Ajustei o caminho do report para onde o .NET salva por padrão)
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.2.4
       with:
-        reports: '**/coverage.cobertura.xml'
+        reports: '**/TestResults/**/coverage.cobertura.xml' # O .NET cria uma pasta TestResults automática
         targetdir: 'coveragereport'
         reporttypes: 'HtmlInline;Cobertura'
 
-    # 7. Publica o resultado para você ver no GitHub
+    # 7. Sobe o relatório para você baixar
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v4
       with:
