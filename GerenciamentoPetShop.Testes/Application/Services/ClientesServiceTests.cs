@@ -92,7 +92,6 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
 
             repoMock.Verify(r => r.Get(It.Is<int>(p => p == pageNumber), It.Is<int>(q => q == pageQuantity)), Times.Once);
 
-            // Verifica se o service realmente retornou os bytes que o mock enviou
             Assert.Equal(clientesFake, resultado);
         }
     }
