@@ -1,7 +1,9 @@
 ﻿using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Infraestrutura;
 using Gerenciamento_PetShop.Presentation.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using Moq;  
 using Xunit;
 
@@ -35,6 +37,28 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             // Verificamos se o método Add do repositório foi chamado exatamente UMA VEZ
             // com um objeto do tipo Clientes que tenha o nome "João Silva"
             repoMock.Verify(r => r.Add(It.Is<Clientes>(c => c.Nome == "João Silva")), Times.Once);
+        }
+
+        [Fact]
+        public void Baixar_DeveRetornarArquivoCorreto()
+        {
+            var repoMock = new Mock<IClientesRepository>();
+            var fileMock = new Mock<IFileStorageService>();
+            var service = new ClientesService(repoMock.Object, fileMock.Object);
+
+            var pageNumber = 1;
+            var pageQuantity = 5;
+            var cpfDesejado = "12312452323";
+            var clientesFake = new List<Clientes> {
+                new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
+                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2" }
+            };
+            repoMock
+                .Setup(s => s.Get(pageNumber, pageQuantity))
+                .Returns(clientesFake);
+            // 2. ACT - Chamamos a ação real
+            var arquivo = service.Baixar(cpfDesejado);
+            fileMock.Verify(f => f.LerArquivo(It.Is<string>(c => c == arquivo.ToString())), Times.Once);
         }
     }
 }
