@@ -35,5 +35,7 @@ namespace GerenciamentoPetShop.Testes.Infraestrutura
                 Assert.Equal("Rex", clienteNoBanco.Nome);
             }
         }
+
+       
     }
 }
