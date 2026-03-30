@@ -65,7 +65,10 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var resultado = service.Baixar(cpfDesejado);
             // 2. ACT - Chamamos a ação real
             var arquivo = service.Baixar(cpfDesejado);
-            fileMock.Verify(f => f.LerArquivo(It.Is<string>(c => c == caminhoEsperado)), Times.Once);
+            fileMock.Verify(f => f.LerArquivo(It.Is<string>(path => path == caminhoEsperado)), Times.Once);
+
+            // Verifica se o service realmente retornou os bytes que o mock enviou
+            Assert.Equal(bytesFalsos, resultado);
         }
     }
 }
