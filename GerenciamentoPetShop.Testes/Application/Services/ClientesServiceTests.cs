@@ -46,18 +46,23 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var fileMock = new Mock<IFileStorageService>();
             var service = new ClientesService(repoMock.Object, fileMock.Object);
 
-            var pageNumber = 1;
-            var pageQuantity = 5;
 
             var caminhoEsperado = "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Storage\\images.png";
             var cpfDesejado = "12312452323";
+            var bytesFalsos = new byte[] { 0x20, 0x20, 0x20 };
+
             var clientesFake = new List<Clientes> {
                 new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
                 new Clientes { CPF = cpfDesejado, Nome = "Cliente 2", Photo = caminhoEsperado }
             };
             repoMock
-                .Setup(s => s.Get(pageNumber, pageQuantity))
-                .Returns(clientesFake);
+                 .Setup(s => s.Get(It.IsAny<int>(), It.IsAny<int>()))
+                 .Returns(clientesFake);
+
+            // Se o seu método LerArquivo retorna bytes ou string, você pode configurar o retorno aqui:
+            fileMock.Setup(f => f.LerArquivo(caminhoEsperado)).Returns(bytesFalsos);
+
+            var resultado = service.Baixar(cpfDesejado);
             // 2. ACT - Chamamos a ação real
             var arquivo = service.Baixar(cpfDesejado);
             fileMock.Verify(f => f.LerArquivo(It.Is<string>(c => c == caminhoEsperado)), Times.Once);
