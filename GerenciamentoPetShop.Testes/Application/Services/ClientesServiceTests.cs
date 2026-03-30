@@ -51,7 +51,7 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var cpfDesejado = "12312452323";
             var clientesFake = new List<Clientes> {
                 new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
-                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2" }
+                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2", Photo = "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Storage\\images.png" }
             };
             repoMock
                 .Setup(s => s.Get(pageNumber, pageQuantity))
