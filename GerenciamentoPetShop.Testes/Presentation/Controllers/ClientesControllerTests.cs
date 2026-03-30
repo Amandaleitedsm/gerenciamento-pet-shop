@@ -40,7 +40,7 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
             var pageQuantity = 10;
             var clientesFakes = new List<Clientes>
             {
-                new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
+                new Clientes { CPF = "12312312323", Nome = "Cliente 1"},
                 new Clientes { CPF = "12312452323", Nome = "Cliente 2" }
             };
             _serviceMock

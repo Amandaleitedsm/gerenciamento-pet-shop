@@ -48,17 +48,19 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
 
             var pageNumber = 1;
             var pageQuantity = 5;
+
+            var caminhoEsperado = "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Storage\\images.png";
             var cpfDesejado = "12312452323";
             var clientesFake = new List<Clientes> {
                 new Clientes { CPF = "12312312323", Nome = "Cliente 1" },
-                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2" }
+                new Clientes { CPF = cpfDesejado, Nome = "Cliente 2", Photo = caminhoEsperado }
             };
             repoMock
                 .Setup(s => s.Get(pageNumber, pageQuantity))
                 .Returns(clientesFake);
             // 2. ACT - Chamamos a ação real
             var arquivo = service.Baixar(cpfDesejado);
-            fileMock.Verify(f => f.LerArquivo(It.Is<string>(c => c == arquivo.ToString())), Times.Once);
+            fileMock.Verify(f => f.LerArquivo(It.Is<string>(c => c == caminhoEsperado)), Times.Once);
         }
     }
 }
