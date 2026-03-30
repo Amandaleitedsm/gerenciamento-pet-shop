@@ -68,5 +68,31 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             // Verifica se o service realmente retornou os bytes que o mock enviou
             Assert.Equal(bytesFalsos, resultado);
         }
+
+        [Fact]
+        public void GetClientes_DeveRetornarListaDeClientes()
+        {
+            var repoMock = new Mock<IClientesRepository>();
+            var fileMock = new Mock<IFileStorageService>();
+            var service = new ClientesService(repoMock.Object, fileMock.Object);
+
+            var clientesFake = new List<Clientes>
+            {
+                new Clientes { CPF = "12345678", Nome = "Cliente 1" },
+                new Clientes { CPF = "87654321", Nome = "Cliente 2" }
+            };
+
+            var pageNumber = 1;
+            var pageQuantity = 10;
+            repoMock
+                 .Setup(s => s.Get(pageNumber, pageQuantity))
+                 .Returns(clientesFake);
+
+            var resultado = service.GetClientes(pageNumber, pageQuantity);
+
+            repoMock.Verify(r => r.Get(It.Is<int>(p => p == pageNumber), It.Is<int>(q => q == pageQuantity)), Times.Once);
+
+            Assert.Equal(clientesFake, resultado);
+        }
     }
 }
