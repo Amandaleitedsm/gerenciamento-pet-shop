@@ -33,5 +33,22 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
 
             Assert.IsType<FileContentResult>(resultado);
         }
+
+        public void Get_DeveRetornarOkComClientes_QuandoServiceRetornaClientes()
+        {
+            var pageNumber = 1;
+            var pageQuantity = 10;
+            var clientesFakes = new List<Clientes>
+            {
+                new Clientes { CPF = "12312312323", Nome = "Cliente 1"},
+                new Clientes { CPF = "12312452323", Nome = "Cliente 2" }
+            };
+            _serviceMock
+                .Setup(s => s.GetClientes(pageNumber, pageQuantity)) // Configura o mock para retornar a lista de clientes fake quando o método GetClientes for chamado com os parâmetros pageNumber e pageQuantity
+                .Returns(clientesFakes);
+            var resultado = _controller.Get(pageNumber, pageQuantity) as OkObjectResult; // Chama o método Get e converte o resultado para OkObjectResult
+            Assert.NotNull(resultado); // Verifica se o resultado não é nulo
+            Assert.IsType<List<Clientes>>(resultado.Value); // Verifica se o valor retornado é do tipo List<Clientes>
+        }
     }
 }
