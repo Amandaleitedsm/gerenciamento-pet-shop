@@ -1,4 +1,4 @@
-﻿using Gerenciamento_PetShop.Domain.Interfaces;
+﻿using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
 using Gerenciamento_PetShop.Presentation.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -23,13 +23,13 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
         [Fact]
         public void Download_DeveRetornarFile_QuandoServiceRetornaBytes()
         {
-            var cpf = "12345665434";
+            var id = 1;
             var bytesFakes = new byte[] { 0x01, 0x02 };
             _serviceMock
-                .Setup(s => s.Baixar(cpf))
+                .Setup(s => s.Baixar(id))
                 .Returns(bytesFakes);
 
-            var resultado = _controller.Download(cpf);
+            var resultado = _controller.Download(id);
 
             Assert.IsType<FileContentResult>(resultado);
         }

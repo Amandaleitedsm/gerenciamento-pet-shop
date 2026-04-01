@@ -1,43 +1,45 @@
 ﻿using Asp.Versioning;
+using Gerenciamento_PetShop.Application.Interfaces;
+using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Presentation.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Gerenciamento_PetShop.Domain.Interfaces;
 
 namespace Gerenciamento_PetShop.Presentation.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    //[Authorize]
     [ApiController]
-    [Route("api/v1/clientes")]
+    [Route("api/v1/[Controller]")]
     [ApiVersion("1.0")]
     public class ClientesController : ControllerBase
     {
         private readonly IClientesService _clientesService;
-        
+
         public ClientesController(IClientesService clientesService)
         {
             _clientesService = clientesService;
         }
 
         [HttpPost]
-        public IActionResult Add([FromForm] ClientesViewModel clientesViewModel)
+        public IActionResult Add([FromBody] ClientesCreateViewModel clientesViewModel)
         {
             _clientesService.AdicionarCliente(clientesViewModel);
             return Ok();
         }
 
         [HttpPost]
-        [Route("{cpf}/download")]
-        public IActionResult Download(string cpf)
+        [Route("{id}/download")]
+        public IActionResult Download(int id)
         {
-            var dataBytes = _clientesService.Baixar(cpf);
-            if (dataBytes == null || dataBytes.Length == 0)
+            var dataBytes = _clientesService.Baixar(id);
+            if (dataBytes == null)
             {
                 return NotFound("Foto não encontrada.");
             }
             return File(dataBytes, "image/png");
         }
-        
+
         /// <summary>
         /// Busca todos os clientes
         /// </summary>
@@ -51,6 +53,24 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
         {
             var clientes = _clientesService.GetClientes(pageNumber, pageQuantity);
             return Ok(clientes);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var cliente = _clientesService.GetClienteById(id);
+            if (cliente == null) return NotFound("Cliente não encontrado.");
+            return Ok(cliente);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update(int id, [FromBody] ClientesUpdateViewModel clientesUpdateViewModel)
+        {
+            var clienteAtualizado = _clientesService.AtualizarCliente(id, clientesUpdateViewModel);
+            if (clienteAtualizado == null) return NotFound("Cliente não encontrado para atualização.");
+            return Ok(clienteAtualizado);
         }
     }
 }

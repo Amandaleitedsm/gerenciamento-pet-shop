@@ -17,19 +17,34 @@ namespace Gerenciamento_PetShop.Infraestrutura
             _context.Clientes.Add(cliente);
             _context.SaveChanges();
         }
+        
 
         public List<Clientes> Get(int pageNumber, int pageQuantity)
         {
             if (pageNumber < 1 || pageQuantity < 1)
             {
-                return _context.Clientes.ToList();
+                return _context.Clientes
+                    .Include(c => c.Pets)
+                    .ToList();
             }
-            return _context.Clientes.Skip((pageNumber - 1) * pageQuantity).Take(pageQuantity).ToList();
+            return _context.Clientes
+                .Include(c => c.Pets)
+                .Skip((pageNumber - 1) * pageQuantity)
+                .Take(pageQuantity)
+                .ToList();
         }
 
-        public Clientes? Get(string cpf)
+        public Clientes? Get(int id)
         {
-            return _context.Clientes.Find(cpf);
+            return _context.Clientes
+                .Include(c => c.Pets)
+                .FirstOrDefault(c => c.Id == id);
+        }
+
+        public void Update(Clientes cliente)
+        {
+            _context.Clientes.Update(cliente);
+            _context.SaveChanges();
         }
     }
 }

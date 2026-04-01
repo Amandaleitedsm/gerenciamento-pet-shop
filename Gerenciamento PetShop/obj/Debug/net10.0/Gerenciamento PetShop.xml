@@ -4,16 +4,28 @@
         <name>Gerenciamento PetShop</name>
     </assembly>
     <members>
-        <member name="T:Gerenciamento_PetShop.Migrations.primeira">
+        <member name="T:Gerenciamento_PetShop.Migrations.CriarDatabase">
             <inheritdoc />
         </member>
-        <member name="M:Gerenciamento_PetShop.Migrations.primeira.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Gerenciamento_PetShop.Migrations.CriarDatabase.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Gerenciamento_PetShop.Migrations.primeira.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Gerenciamento_PetShop.Migrations.CriarDatabase.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Gerenciamento_PetShop.Migrations.primeira.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Gerenciamento_PetShop.Migrations.CriarDatabase.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Gerenciamento_PetShop.Migrations.RelacaoFKPets">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.RelacaoFKPets.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.RelacaoFKPets.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.RelacaoFKPets.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="M:Gerenciamento_PetShop.Presentation.Controllers.ClientesController.Get(System.Int32,System.Int32)">
@@ -26,7 +38,12 @@
             <returns>Dados dos clientes cadastrados</returns>
             <response code="200">Clientes retornados</response>
         </member>
-        <member name="P:Gerenciamento_PetShop.Presentation.ViewModel.ClientesViewModel.DataNascimento">
+        <member name="P:Gerenciamento_PetShop.Presentation.ViewModel.ClientesCreateViewModel.DataNascimento">
+            <summary>
+            Data de nascimento do cliente.
+            </summary>
+        </member>
+        <member name="P:Gerenciamento_PetShop.Presentation.ViewModel.ClientesUpdateViewModel.DataNascimento">
             <summary>
             Data de nascimento do cliente.
             </summary>

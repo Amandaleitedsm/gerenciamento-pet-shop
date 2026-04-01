@@ -1,4 +1,5 @@
-﻿using Gerenciamento_PetShop.Application.Services;
+﻿using Gerenciamento_PetShop.Application.Interfaces;
+using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
 using Gerenciamento_PetShop.Infraestrutura;
@@ -18,11 +19,12 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var repoMock = new Mock<IClientesRepository>();
             // Se o seu service também pedir o IFileStorageService no construtor, mock ele também:
             var fileMock = new Mock<IFileStorageService>();
+            var petsMock = new Mock<IPetsRepository>();
 
             // Passamos os Mocks para o construtor
-            var service = new ClientesService(repoMock.Object, fileMock.Object);
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
 
-            var viewModel = new ClientesViewModel
+            var viewModel = new ClientesCreateViewModel
             {
                 Nome = "João Silva",
                 Cpf = "12345678",
@@ -44,16 +46,17 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
         {
             var repoMock = new Mock<IClientesRepository>();
             var fileMock = new Mock<IFileStorageService>();
-            var service = new ClientesService(repoMock.Object, fileMock.Object);
+            var petsMock = new Mock<IPetsRepository>();
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
 
 
             var caminhoEsperado = "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Storage\\images.png";
             var cpfDesejado = "12312452323";
             var bytesFalsos = new byte[] { 0x20, 0x20, 0x20 };
 
-            var clienteFake = new Clientes { CPF = cpfDesejado, Nome = "Cliente 1", Photo = caminhoEsperado};
+            var clienteFake = new Clientes { Id = 1, CPF = cpfDesejado, Nome = "Cliente 1", Photo = caminhoEsperado};
             repoMock
-                 .Setup(s => s.Get(cpfDesejado))
+                 .Setup(s => s.Get(1))
                  .Returns(clienteFake);
 
             // Se o seu método LerArquivo retorna bytes ou string, você pode configurar o retorno aqui:
@@ -62,7 +65,7 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
                 .Returns(bytesFalsos);
 
             // 2. ACT - Chamamos a ação real
-            var resultado = service.Baixar(cpfDesejado);
+            var resultado = service.Baixar(1);
             fileMock.Verify(f => f.LerArquivo(It.Is<string>(path => path == caminhoEsperado)), Times.Once);
 
             // Verifica se o service realmente retornou os bytes que o mock enviou
@@ -74,7 +77,8 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
         {
             var repoMock = new Mock<IClientesRepository>();
             var fileMock = new Mock<IFileStorageService>();
-            var service = new ClientesService(repoMock.Object, fileMock.Object);
+            var petsMock = new Mock<IPetsRepository>();
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
 
             var clientesFake = new List<Clientes>
             {

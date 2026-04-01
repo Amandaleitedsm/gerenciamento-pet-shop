@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Gerenciamento_PetShop.Domain.Modelos;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Gerenciamento_PetShop.Presentation.ViewModel
 {
-    public class ClientesViewModel
+    public class ClientesCreateViewModel
     {
         [Required(ErrorMessage = "O campo CPF é obrigatório.")]
         public string Cpf { get; set; }
