@@ -1,4 +1,5 @@
 ﻿using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Presentation.ViewModel;
 
 namespace Gerenciamento_PetShop.Domain.Interfaces
 {
@@ -6,7 +7,7 @@ namespace Gerenciamento_PetShop.Domain.Interfaces
     {
         void Add(Clientes cliente);
         List<Clientes> Get(int pageNumber, int pageQuantity);
-
-        Clientes? Get(string cpf);
+        Clientes? Get(int id);
+        void Update(Clientes cliente);
     }
 }

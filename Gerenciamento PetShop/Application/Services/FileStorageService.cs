@@ -1,4 +1,4 @@
-﻿using Gerenciamento_PetShop.Domain.Interfaces;
+﻿using Gerenciamento_PetShop.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace Gerenciamento_PetShop.Infrastructure.Storage 
