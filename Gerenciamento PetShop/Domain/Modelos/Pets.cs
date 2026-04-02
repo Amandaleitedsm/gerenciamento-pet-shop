@@ -18,7 +18,7 @@ namespace Gerenciamento_PetShop.Domain.Modelos
         }
         public int Id { get; set; }
         public string Nome { get; set; }
-        public TipoAnimalEnum TipoAnimal { get; set; }
+        public TipoAnimalEnum? TipoAnimal { get; set; }
         public PorteAnimalEnum PorteAnimal { get; set; }
         public int ClienteId { get; set; }     // FK
 

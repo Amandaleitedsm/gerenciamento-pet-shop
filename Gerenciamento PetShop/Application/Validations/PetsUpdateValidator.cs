@@ -13,15 +13,15 @@ namespace Gerenciamento_PetShop.Application.Validations
 
             RuleFor(c => c.TipoAnimal)
                 .IsInEnum().WithMessage("O tipo do animal é inválido.")
-                .When(c => c.TipoAnimal.HasValue);
+                .When(c => c.TipoAnimal > 0);
 
             RuleFor(c => c.PorteAnimal)
                 .IsInEnum().WithMessage("O porte do animal é inválido.")
-                .When(c => c.PorteAnimal.HasValue);
+                .When(c => c.PorteAnimal > 0);
 
             RuleFor(c => c.ClienteId)
                 .GreaterThan(0).WithMessage("O ID do cliente é inválido.")
-                .When(c => c.ClienteId.HasValue);
+                .When(c => c.ClienteId > 0);
         }
     }
 }
