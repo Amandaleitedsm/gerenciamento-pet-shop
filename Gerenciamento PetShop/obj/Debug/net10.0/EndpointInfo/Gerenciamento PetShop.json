@@ -450,19 +450,15 @@
   "components": {
     "schemas": {
       "ClientesCreateViewModel": {
-        "required": [
-          "cpf",
-          "nome"
-        ],
         "type": "object",
         "properties": {
           "cpf": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "nome": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "photo": {
             "type": "string",
@@ -500,15 +496,11 @@
         "additionalProperties": false
       },
       "PetsCreateViewModel": {
-        "required": [
-          "clienteId",
-          "nome"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "tipoAnimal": {
             "$ref": "#/components/schemas/TipoAnimalEnum"

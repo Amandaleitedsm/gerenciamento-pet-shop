@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciamento_PetShop.Presentation.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/v1/[Controller]")]
     [ApiVersion("1.0")]

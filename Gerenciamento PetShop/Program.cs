@@ -1,8 +1,10 @@
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using AutoMapper;
 using Gerenciamento_PetShop;
 using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Application.Services;
+using Gerenciamento_PetShop.Application.Validations;
 using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Infraestrutura;
 using Gerenciamento_PetShop.Infrastructure.Storage;
@@ -12,7 +14,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Reflection;
 using System.Text;
-using AutoMapper;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 
 public partial class Program
 {
@@ -68,6 +71,11 @@ public partial class Program
         });
 
         builder.Services.AddControllers();
+        builder.Services.AddFluentValidationAutoValidation();
+
+        builder.Services.AddValidatorsFromAssemblyContaining<ClientesCreateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<PetsCreateValidator>();
+
         builder.Services.AddTransient<IClientesRepository, ClientesRepository>();
         builder.Services.AddTransient<IPetsRepository, PetsRepository>();
         builder.Services.AddTransient<IClientesService, ClientesService>();

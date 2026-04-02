@@ -473,3 +473,8 @@ C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\obj\Debug\net10.0\GerenciamentoPetShop.Testes.genruntimeconfig.cache
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\obj\Debug\net10.0\ref\GerenciamentoPetShop.Testes.dll
 C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\AutoMapper.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\Bifrost.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\Bifrost.FluentValidation.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\FluentValidation.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\FluentValidation.AspNetCore.dll
+C:\Users\amanda.machado\OneDrive - GSW Software\Documentos\Estudos - Estagio GSW\FASE 5\APIS REST\Gerenciamento PetShop\GerenciamentoPetShop.Testes\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
