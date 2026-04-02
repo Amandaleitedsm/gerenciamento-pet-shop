@@ -1,6 +1,6 @@
 ﻿using Gerenciamento_PetShop.Domain.Modelos;
 
-namespace Gerenciamento_PetShop.Domain.Interfaces
+namespace Gerenciamento_PetShop.Application.Interfaces
 {
     public interface IFileStorageService
     {

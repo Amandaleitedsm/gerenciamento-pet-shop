@@ -1,14 +1,18 @@
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using Gerenciamento_PetShop;
+using Gerenciamento_PetShop.Application.Interfaces;
+using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Infraestrutura;
+using Gerenciamento_PetShop.Infrastructure.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Reflection;
 using System.Text;
+using AutoMapper;
 
 public partial class Program
 {
@@ -65,6 +69,12 @@ public partial class Program
 
         builder.Services.AddControllers();
         builder.Services.AddTransient<IClientesRepository, ClientesRepository>();
+        builder.Services.AddTransient<IPetsRepository, PetsRepository>();
+        builder.Services.AddTransient<IClientesService, ClientesService>();
+        builder.Services.AddTransient<IPetsService, PetsService>();
+        builder.Services.AddTransient<IFileStorageService, FileStorageService>();
+
+        builder.Services.AddAutoMapper(cfg => { }, AppDomain.CurrentDomain.GetAssemblies());
 
         var key = Encoding.ASCII.GetBytes(Key.Secret);
 
@@ -106,6 +116,7 @@ public partial class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

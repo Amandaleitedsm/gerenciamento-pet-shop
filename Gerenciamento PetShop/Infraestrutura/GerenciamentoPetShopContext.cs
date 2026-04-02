@@ -6,6 +6,7 @@ namespace Gerenciamento_PetShop.Infraestrutura
     public class GerenciamentoPetShopContext : DbContext
     {
         public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Pets> Pets { get; set; }
 
         public GerenciamentoPetShopContext(DbContextOptions<GerenciamentoPetShopContext> options)
         : base(options)

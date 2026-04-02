@@ -1,11 +1,14 @@
-﻿using Gerenciamento_PetShop.Domain.Interfaces;
+﻿using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
 using Gerenciamento_PetShop.Presentation.Controllers;
+using Gerenciamento_PetShop.Presentation.DTOs;
+using Gerenciamento_PetShop.Presentation.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 
 namespace GerenciamentoPetShop.Testes.Presentation.Controllers
 {
@@ -23,32 +26,59 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
         [Fact]
         public void Download_DeveRetornarFile_QuandoServiceRetornaBytes()
         {
-            var cpf = "12345665434";
+            var id = 1;
             var bytesFakes = new byte[] { 0x01, 0x02 };
             _serviceMock
-                .Setup(s => s.Baixar(cpf))
+                .Setup(s => s.Baixar(id))
                 .Returns(bytesFakes);
 
-            var resultado = _controller.Download(cpf);
+            var resultado = _controller.Download(id);
 
             Assert.IsType<FileContentResult>(resultado);
         }
+
+        [Fact]
 
         public void Get_DeveRetornarOkComClientes_QuandoServiceRetornaClientes()
         {
             var pageNumber = 1;
             var pageQuantity = 10;
-            var clientesFakes = new List<Clientes>
+            var clientesFakes = new List<ClientesResponse>
             {
-                new Clientes { CPF = "12312312323", Nome = "Cliente 1"},
-                new Clientes { CPF = "12312452323", Nome = "Cliente 2" }
+                new ClientesResponse { CPF = "12312312323", Nome = "Cliente 1"},
+                new ClientesResponse { CPF = "12312452323", Nome = "Cliente 2" }
             };
+
             _serviceMock
                 .Setup(s => s.GetClientes(pageNumber, pageQuantity)) // Configura o mock para retornar a lista de clientes fake quando o método GetClientes for chamado com os parâmetros pageNumber e pageQuantity
                 .Returns(clientesFakes);
+
             var resultado = _controller.Get(pageNumber, pageQuantity) as OkObjectResult; // Chama o método Get e converte o resultado para OkObjectResult
+            
             Assert.NotNull(resultado); // Verifica se o resultado não é nulo
-            Assert.IsType<List<Clientes>>(resultado.Value); // Verifica se o valor retornado é do tipo List<Clientes>
+            Assert.IsType<List<ClientesResponse>>(resultado.Value); // Verifica se o valor retornado é do tipo List<Clientes>
+        }
+
+        [Fact] // Adicione o atributo de teste
+        public void Update_DeveRetornarOk_QuandoClienteForAtualizado()
+        {
+            // Arrange
+            var id = 1;
+            var updateViewModel = new ClientesUpdateViewModel { Nome = "Cliente Atualizado" };
+            var responseEsperada = new ClientesResponse { CPF = "12312312323", Nome = "Cliente Atualizado" };
+
+            // Configura o Mock para retornar o DTO quando o service for chamado
+            _serviceMock
+                .Setup(s => s.AtualizarCliente(id, updateViewModel))
+                .Returns(responseEsperada);
+
+
+            // Act
+            var result = _controller.Update(id, updateViewModel); // Chama a Action do Controller
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result); // Verifica se retornou 200 OK
+            Assert.Equal(responseEsperada, okResult.Value); // Verifica se o conteúdo do OK é o cliente
         }
     }
 }

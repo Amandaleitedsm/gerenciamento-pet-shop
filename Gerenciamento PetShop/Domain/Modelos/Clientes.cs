@@ -8,12 +8,14 @@ namespace Gerenciamento_PetShop.Domain.Modelos
     public class Clientes
     {
         [Key]
+        public int Id { get; set; }
         public string CPF { get; set; }
         public string Nome { get; set; }
         public string? Photo { get; set; }
         public DateTime? Data_Nascimento { get; set; }
+        public List<Pets> Pets { get; set; } = new List<Pets> ();
 
-        public Clientes(string cpf, string nome, DateTime? data_nascimento = null, string photo = null)
+        public Clientes(string cpf, string nome, DateTime? data_nascimento = null, string? photo = null)
         {
             CPF = cpf;
             Nome = nome;
@@ -22,5 +24,6 @@ namespace Gerenciamento_PetShop.Domain.Modelos
         }
 
         public Clientes() { }
+
     }
 }
