@@ -1,8 +1,10 @@
-﻿using Gerenciamento_PetShop.Application.Interfaces;
+﻿using AutoMapper;
+using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
 using Gerenciamento_PetShop.Infraestrutura;
+using Gerenciamento_PetShop.Presentation.DTOs;
 using Gerenciamento_PetShop.Presentation.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Moq;  
@@ -20,9 +22,9 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             // Se o seu service também pedir o IFileStorageService no construtor, mock ele também:
             var fileMock = new Mock<IFileStorageService>();
             var petsMock = new Mock<IPetsRepository>();
-
+            var mapperMock = new Mock<IMapper>();
             // Passamos os Mocks para o construtor
-            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object, mapperMock.Object);
 
             var viewModel = new ClientesCreateViewModel
             {
@@ -47,7 +49,9 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
             var repoMock = new Mock<IClientesRepository>();
             var fileMock = new Mock<IFileStorageService>();
             var petsMock = new Mock<IPetsRepository>();
-            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
+            var mapperMock = new Mock<IMapper>();
+
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object, mapperMock.Object);
 
 
             var caminhoEsperado = "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Storage\\images.png";
@@ -75,10 +79,13 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
         [Fact]
         public void GetClientes_DeveRetornarListaDeClientes()
         {
+            // Arrange
             var repoMock = new Mock<IClientesRepository>();
             var fileMock = new Mock<IFileStorageService>();
             var petsMock = new Mock<IPetsRepository>();
-            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object);
+            var mapperMock = new Mock<IMapper>();
+
+            var service = new ClientesService(repoMock.Object, fileMock.Object, petsMock.Object, mapperMock.Object);
 
             var clientesFake = new List<Clientes>
             {
@@ -86,17 +93,26 @@ namespace Gerenciamento_PetShop.Testes.Application.Services
                 new Clientes { CPF = "87654321", Nome = "Cliente 2" }
             };
 
-            var pageNumber = 1;
-            var pageQuantity = 10;
-            repoMock
-                 .Setup(s => s.Get(pageNumber, pageQuantity))
-                 .Returns(clientesFake);
+            // DEFINA O RETORNO DO MAPPER AQUI
+            var clientesResponseFake = new List<ClientesResponse>
+            {
+                new ClientesResponse { CPF = "12345678", Nome = "Cliente 1" },
+                new ClientesResponse { CPF = "87654321", Nome = "Cliente 2" }
+            };
 
-            var resultado = service.GetClientes(pageNumber, pageQuantity);
+            repoMock.Setup(s => s.Get(1, 10)).Returns(clientesFake);
 
-            repoMock.Verify(r => r.Get(It.Is<int>(p => p == pageNumber), It.Is<int>(q => q == pageQuantity)), Times.Once);
+            // Se o service faz: _mapper.Map<IEnumerable<ClientesResponse>>(clientes)
+            mapperMock.Setup(m => m.Map<List<ClientesResponse>>(It.IsAny<List<Clientes>>()))
+                        .Returns(clientesResponseFake);
 
-            Assert.Equal(clientesFake, resultado);
+            // Act
+            var resultado = service.GetClientes(1, 10);
+
+            // Assert
+            Assert.NotNull(resultado);
+            Assert.Equal(clientesResponseFake.Count, resultado.Count());
+            Assert.Equal(clientesResponseFake[0].Nome, resultado.First().Nome);
         }
     }
 }

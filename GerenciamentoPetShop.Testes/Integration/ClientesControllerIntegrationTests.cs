@@ -20,9 +20,10 @@ namespace Gerenciamento_PetShop.Testes.Integration
         {
             // ACT - Tenta acessar a rota de clientes sem configurar o Bearer
             var response = await _client.GetAsync("/api/v1/Clientes");
-
+            // a rota está com [Authorize] comentado
             // ASSERT - O status deve ser 401 (Unauthorized)
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
+
     }
 }
