@@ -1,6 +1,6 @@
+using Serilog;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
-using AutoMapper;
 using Gerenciamento_PetShop;
 using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Application.Services;
@@ -23,7 +23,14 @@ public partial class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Information() // Só vai registrar de Information para cima (ignora os rascunhos)
+        .WriteTo.Console() // Continua mostrando no terminal
+        .WriteTo.File("Logs/petshop-log-.txt", rollingInterval: RollingInterval.Day) // Cria um arquivo por dia!
+        .CreateLogger();
 
+            // Troca o motor de log padrão pelo Serilog
+            builder.Host.UseSerilog();
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddApiVersioning(v =>

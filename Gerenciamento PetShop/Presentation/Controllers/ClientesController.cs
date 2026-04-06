@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciamento_PetShop.Presentation.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/v1/[Controller]")]
     [ApiVersion("1.0")]
@@ -84,6 +84,7 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
         [Route("relatorio/tipo-animal")]
         public IActionResult GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal)
         {
+            throw new Exception("Teste de log da Amanda: Erro proposital!");
             var relatorio = _clientesService.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
             return Ok(relatorio);
         }
