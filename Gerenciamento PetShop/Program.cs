@@ -75,6 +75,8 @@ public partial class Program
 
         builder.Services.AddValidatorsFromAssemblyContaining<ClientesCreateValidator>();
         builder.Services.AddValidatorsFromAssemblyContaining<PetsCreateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<PetsUpdateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<ClientesUpdateValidator>();
 
         builder.Services.AddTransient<IClientesRepository, ClientesRepository>();
         builder.Services.AddTransient<IPetsRepository, PetsRepository>();
