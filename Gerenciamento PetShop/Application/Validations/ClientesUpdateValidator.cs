@@ -19,17 +19,10 @@ namespace Gerenciamento_PetShop.Application.Validations
                 // CascadeMode.Stop garante que se a foto for nula, ele para de validar as regras seguintes
                 // para não dar erro de NullReferenceException ao verificar o tamanho
                 .Cascade(CascadeMode.Stop)
-
-                .NotNull().WithMessage("É obrigatório enviar uma foto.")
-
-                // Valida se o ficheiro não tem 0 bytes
                 .Must(f => f.Length > 0).WithMessage("O ficheiro enviado está vazio.")
-
-                // Valida o limite de tamanho (ex: 2 MB = 2 * 1024 * 1024 bytes)
                 .Must(f => f.Length <= 2097152).WithMessage("A foto não pode ultrapassar 2MB.")
-
-                // Valida a extensão / ContentType (segurança contra ficheiros maliciosos)
-                .Must(ValidarTipoFicheiro).WithMessage("Apenas imagens nos formatos JPG, JPEG ou PNG são permitidas.");
+                .Must(ValidarTipoFicheiro).WithMessage("Apenas imagens nos formatos JPG, JPEG ou PNG são permitidas.")
+                .When(p => p.Photo != null);
         }
 
         // Método auxiliar para manter o código limpo

@@ -1,6 +1,6 @@
+using Serilog;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
-using AutoMapper;
 using Gerenciamento_PetShop;
 using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Application.Services;
@@ -16,13 +16,21 @@ using System.Reflection;
 using System.Text;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using Gerenciamento_PetShop.Presentation.Middlewares;
 
 public partial class Program
 {
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Information() // Só vai registrar de Information para cima (ignora os rascunhos)
+        .WriteTo.Console() // Continua mostrando no terminal
+        .WriteTo.File("Logs/petshop-log-.txt", rollingInterval: RollingInterval.Day) // Cria um arquivo por dia!
+        .CreateLogger();
 
+            // Troca o motor de log padrão pelo Serilog
+            builder.Host.UseSerilog();
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddApiVersioning(v =>
@@ -75,6 +83,8 @@ public partial class Program
 
         builder.Services.AddValidatorsFromAssemblyContaining<ClientesCreateValidator>();
         builder.Services.AddValidatorsFromAssemblyContaining<PetsCreateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<PetsUpdateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<ClientesUpdateValidator>();
 
         builder.Services.AddTransient<IClientesRepository, ClientesRepository>();
         builder.Services.AddTransient<IPetsRepository, PetsRepository>();
@@ -104,11 +114,19 @@ public partial class Program
         });
 
         builder.Services.AddDbContext<GerenciamentoPetShopContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure() // <-- A mágica está aqui!
+        ));
 
         var app = builder.Build();
 
-
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<GerenciamentoPetShopContext>();
+            db.Database.Migrate(); // Cria as tabelas se elas não existirem
+        }
+        app.UseMiddleware<GlobalExceptionMiddleware>();
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {

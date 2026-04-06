@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7WDEWUdqNKA=",
+  "dgSpecHash": "TIcazZQAMBc=",
   "success": true,
   "projectFilePath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Gerenciamento PetShop.csproj",
   "expectedPackageFiles": [
@@ -53,6 +53,15 @@
     "C:\\Users\\amanda.machado\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.aspnetcore\\10.0.0\\serilog.aspnetcore.10.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.extensions.hosting\\10.0.0\\serilog.extensions.hosting.10.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.extensions.logging\\10.0.0\\serilog.extensions.logging.10.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.formatting.compact\\3.0.0\\serilog.formatting.compact.3.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.settings.configuration\\10.0.0\\serilog.settings.configuration.10.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.sinks.console\\6.1.1\\serilog.sinks.console.6.1.1.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.sinks.debug\\3.0.0\\serilog.sinks.debug.3.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.machado\\.nuget\\packages\\serilog.sinks.file\\7.0.0\\serilog.sinks.file.7.0.0.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\swashbuckle.aspnetcore\\10.1.4\\swashbuckle.aspnetcore.10.1.4.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.1.4\\swashbuckle.aspnetcore.swagger.10.1.4.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.1.4\\swashbuckle.aspnetcore.swaggergen.10.1.4.nupkg.sha512",
@@ -71,18 +80,5 @@
     "C:\\Users\\amanda.machado\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "message": "O pacote 'Bifrost 1.0.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net10.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
-      "projectPath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Gerenciamento PetShop.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\Gerenciamento PetShop\\Gerenciamento PetShop.csproj",
-      "libraryId": "Bifrost",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }
