@@ -66,9 +66,9 @@ namespace Gerenciamento_PetShop.Application.Services
             if (cliente == null) return null;
             return _mapper.Map<ClientesResponse>(cliente);
         }
-
         public ClientesResponse AtualizarCliente(int id, ClientesUpdateViewModel clientesViewModel)
         {
+            throw new Exception("Testando o erro global!");
             var cliente = _clientesRepository.Get(id);
             if (cliente == null) return null;
             if (clientesViewModel.Nome != null) cliente.Nome = clientesViewModel.Nome;
@@ -84,6 +84,18 @@ namespace Gerenciamento_PetShop.Application.Services
             }
             _clientesRepository.Update(cliente);
             return _mapper.Map<ClientesResponse>(cliente);
+        }
+
+        public List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity)
+        {
+            var clientes = _clientesRepository.GetRelatorioClientes(pageNumber, pageQuantity);
+            return clientes;
+        }
+
+        public List<RelatorioPetsPorTipo> GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal)
+        {
+            var clientes = _clientesRepository.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
+            return clientes;
         }
     }
 }

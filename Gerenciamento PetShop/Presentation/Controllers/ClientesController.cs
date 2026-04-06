@@ -71,5 +71,21 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
             if (clienteAtualizado == null) return NotFound("Cliente não encontrado para atualização.");
             return Ok(clienteAtualizado);
         }
+
+        [HttpGet]
+        [Route("relatorio")]
+        public IActionResult GetRelatorioClientes(int pageNumber, int pageQuantity)
+        {
+            var relatorio = _clientesService.GetRelatorioClientes(pageNumber, pageQuantity);
+            return Ok(relatorio);
+        }
+
+        [HttpGet]
+        [Route("relatorio/tipo-animal")]
+        public IActionResult GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal)
+        {
+            var relatorio = _clientesService.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
+            return Ok(relatorio);
+        }
     }
 }

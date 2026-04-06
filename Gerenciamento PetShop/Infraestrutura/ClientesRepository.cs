@@ -1,5 +1,7 @@
 ﻿using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Presentation.DTOs;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gerenciamento_PetShop.Infraestrutura
@@ -39,6 +41,37 @@ namespace Gerenciamento_PetShop.Infraestrutura
             return _context.Clientes
                 .Include(c => c.Pets)
                 .FirstOrDefault(c => c.Id == id);
+        }
+
+        public List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity)
+        {
+            if (pageNumber < 1 || pageQuantity < 1)
+            {
+                return _context.Database
+                    .SqlQueryRaw<RelatorioClientesResponse>("EXEC RelatorioClientes")
+                    .ToList();
+            }
+            return _context.Database
+                .SqlQueryRaw<RelatorioClientesResponse>("EXEC RelatorioClientes")
+                .Skip((pageNumber - 1) * pageQuantity)
+                .Take(pageQuantity)
+                .ToList();
+        }
+
+        public List<RelatorioPetsPorTipo> GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal)
+        {
+            var parametroTipo = new SqlParameter("@TipoAnimal", tipoAnimal);
+            if (pageNumber < 1 || pageQuantity < 1)
+            {
+                return _context.Database
+                    .SqlQueryRaw<RelatorioPetsPorTipo>("EXEC RelatorioPetsPorTipo @TipoAnimal", parametroTipo)
+                    .ToList();
+            }
+            return _context.Database
+                .SqlQueryRaw<RelatorioPetsPorTipo>("EXEC RelatorioPetsPorTipo")
+                .Skip((pageNumber - 1) * pageQuantity)
+                .Take(pageQuantity)
+                .ToList();
         }
 
         public void Update(Clientes cliente)

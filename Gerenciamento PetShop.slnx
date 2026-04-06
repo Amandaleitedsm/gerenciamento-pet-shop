@@ -4,6 +4,8 @@
     <File Path="main.yml" />
   </Folder>
   <Folder Name="/src/">
+    <File Path="docker-compose.yml" />
+    <File Path="Dockerfile" />
     <Project Path="Gerenciamento PetShop/Gerenciamento PetShop.csproj" />
   </Folder>
   <Folder Name="/tests/">

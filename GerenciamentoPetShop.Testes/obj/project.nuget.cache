@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pcB3KeLCmXw=",
+  "dgSpecHash": "/jBLFEQD8mg=",
   "success": true,
   "projectFilePath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\GerenciamentoPetShop.Testes\\GerenciamentoPetShop.Testes.csproj",
   "expectedPackageFiles": [
@@ -101,18 +101,5 @@
     "C:\\Users\\amanda.machado\\.nuget\\packages\\xunit.extensibility.execution\\2.9.3\\xunit.extensibility.execution.2.9.3.nupkg.sha512",
     "C:\\Users\\amanda.machado\\.nuget\\packages\\xunit.runner.visualstudio\\3.1.4\\xunit.runner.visualstudio.3.1.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "message": "O pacote 'Bifrost 1.0.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net10.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
-      "projectPath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\GerenciamentoPetShop.Testes\\GerenciamentoPetShop.Testes.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\amanda.machado\\OneDrive - GSW Software\\Documentos\\Estudos - Estagio GSW\\FASE 5\\APIS REST\\Gerenciamento PetShop\\GerenciamentoPetShop.Testes\\GerenciamentoPetShop.Testes.csproj",
-      "libraryId": "Bifrost",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }

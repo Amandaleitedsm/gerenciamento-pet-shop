@@ -115,6 +115,63 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gerenciamento_PetShop.Presentation.Controllers.ClientesController",
+    "Method": "GetRelatorioClientes",
+    "RelativePath": "api/v1/Clientes/relatorio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageQuantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gerenciamento_PetShop.Presentation.Controllers.ClientesController",
+    "Method": "GetRelatorioPetsPorTipo",
+    "RelativePath": "api/v1/Clientes/relatorio/tipo-animal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageQuantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "tipoAnimal",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gerenciamento_PetShop.Presentation.Controllers.PetsController",
     "Method": "Add",
     "RelativePath": "api/v1/Pets",

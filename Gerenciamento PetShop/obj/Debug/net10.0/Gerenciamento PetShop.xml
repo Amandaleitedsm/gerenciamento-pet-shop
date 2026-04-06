@@ -28,6 +28,18 @@
         <member name="M:Gerenciamento_PetShop.Migrations.RelacaoFKPets.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Gerenciamento_PetShop.Migrations.AtualizarModelo">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.AtualizarModelo.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.AtualizarModelo.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Gerenciamento_PetShop.Migrations.AtualizarModelo.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="M:Gerenciamento_PetShop.Presentation.Controllers.ClientesController.Get(System.Int32,System.Int32)">
             <summary>
             Busca todos os clientes

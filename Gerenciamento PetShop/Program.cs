@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Text;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using Gerenciamento_PetShop.Presentation.Middlewares;
 
 public partial class Program
 {
@@ -106,11 +107,19 @@ public partial class Program
         });
 
         builder.Services.AddDbContext<GerenciamentoPetShopContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure() // <-- A mágica está aqui!
+        ));
 
         var app = builder.Build();
 
-
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<GerenciamentoPetShopContext>();
+            db.Database.Migrate(); // Cria as tabelas se elas não existirem
+        }
+        app.UseMiddleware<GlobalExceptionMiddleware>();
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
