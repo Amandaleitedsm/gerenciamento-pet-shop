@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GerenciamentoPetShop.Testes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3cd57129faf07747266bf958d4384ce73a61ceeb")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4f9c8e31cac338489099f5a004c338f31506bec")]
->>>>>>> main
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a03172fabdd3f268f1b4b0ff60d47c8108d75753")]
 [assembly: System.Reflection.AssemblyProductAttribute("GerenciamentoPetShop.Testes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GerenciamentoPetShop.Testes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
