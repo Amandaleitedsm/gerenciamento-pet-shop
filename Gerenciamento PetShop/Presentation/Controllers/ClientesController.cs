@@ -95,5 +95,22 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
             var relatorio = _clientesService.GetRelatorioPorCliente(id);
             return Ok(relatorio);
         }
+
+        [HttpGet]
+        [Route("relatorio")]
+        public IActionResult GetRelatorioClientes(int pageNumber, int pageQuantity)
+        {
+            var relatorio = _clientesService.GetRelatorioClientes(pageNumber, pageQuantity);
+            return Ok(relatorio);
+        }
+
+        [HttpGet]
+        [Route("relatorio/tipo-animal")]
+        public IActionResult GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal)
+        {
+            throw new Exception("Teste de log da Amanda: Erro proposital!");
+            var relatorio = _clientesService.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
+            return Ok(relatorio);
+        }
     }
 }

@@ -1,10 +1,24 @@
-.vs
-[Bb]in
-Gerenciamento PetShop/[Oo]bj
-Gerenciamento PetShop/[Uu]ser
-Gerenciamento PetShop/[Ss]uo
-Gerenciamento PetShop/[Uu]serosscache
-Gerenciamento PetShop/[Ss]ln.docstates
-Gerenciamento PetShop.Testes/[Oo]bj
-*.txt
-Gerenciamento PetShop/Logs
+# --- Visual Studio / .NET ---
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+Gerenciamento PetShop/bin/
+Gerenciamento PetShop/obj/
+GerenciamentoPetShop.Testes/bin/
+GerenciamentoPetShop.Testes/obj/
+Gerenciamento PetShop/Logs/
+
+# --- Angular (PetShop-Front) ---
+PetShop-Front/node_modules/
+PetShop-Front/.angular/
+PetShop-Front/dist/
+PetShop-Front/.vscode/
+PetShop-Front/.editorconfig
+
+# --- Arquivos de Sistema e IDE ---
+.DS_Store
+Thumbs.db
+testEnvironments.json

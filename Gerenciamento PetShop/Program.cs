@@ -119,30 +119,11 @@ public partial class Program
         });
 
         builder.Services.AddDbContext<GerenciamentoPetShopContext>(options =>
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("DefaultConnection"),
-            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure() // <-- A mágica está aqui!
-        ));
-
-
-        builder.Services.AddCors(options => {
-            options.AddPolicy("AngularPolicy", policy => {
-                policy.WithOrigins("http://localhost:4200")
-                      .AllowAnyHeader()
-                      .AllowAnyMethod();
-            });
-        });
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         var app = builder.Build();
-        
-        app.UseCors("AngularPolicy");
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<GerenciamentoPetShopContext>();
-            db.Database.Migrate(); // Cria as tabelas se elas não existirem
-        }
-        app.UseMiddleware<GlobalExceptionMiddleware>();
+
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
