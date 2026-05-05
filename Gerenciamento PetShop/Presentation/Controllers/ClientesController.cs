@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciamento_PetShop.Presentation.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/v1/[Controller]")]
     [ApiVersion("1.0")]
@@ -67,9 +67,8 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
         [Route("{id}")]
         public IActionResult Update(int id, [FromBody] ClientesUpdateViewModel clientesUpdateViewModel)
         {
-            var clienteAtualizado = _clientesService.AtualizarCliente(id, clientesUpdateViewModel);
-            if (clienteAtualizado == null) return NotFound("Cliente não encontrado para atualização.");
-            return Ok(clienteAtualizado);
+            _clientesService.AtualizarCliente(id, clientesUpdateViewModel);
+            return Ok();
         }
 
         [HttpGet]
@@ -88,5 +87,14 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
             var relatorio = _clientesService.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
             return Ok(relatorio);
         }
+
+        [HttpGet]
+        [Route("relatorio/{id}")]
+        public IActionResult GetRelatorioClientes(int id)
+        {
+            var relatorio = _clientesService.GetRelatorioPorCliente(id);
+            return Ok(relatorio);
+        }
+
     }
 }

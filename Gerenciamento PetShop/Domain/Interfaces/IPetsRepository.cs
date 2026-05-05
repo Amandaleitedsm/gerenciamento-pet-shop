@@ -1,4 +1,5 @@
 ﻿using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Presentation.DTOs;
 
 namespace Gerenciamento_PetShop.Domain.Interfaces
 {

@@ -1,0 +1,48 @@
+.main {
+  background-color: var(--cor-primaria);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.div-login {
+  font-family: var(--fonte-padrao);
+  height: fit-content;
+  width: fit-content;
+  padding: 25px;
+  background-color: var(--cor-primaria);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label-form {
+  color: var(--cor-secundaria);
+  font-weight: 600;
+}
+
+input {
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  height: 30px;
+  padding-left: 5px;
+  width: 210px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--cor-secundaria);
+}
+
+.btn-principal {
+  background-color: var(--cor-secundaria);
+  color: white;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  height: 30px;
+  padding-left: 5px;
+  width: 100%;
+}

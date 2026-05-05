@@ -85,12 +85,17 @@ public partial class Program
         builder.Services.AddValidatorsFromAssemblyContaining<PetsCreateValidator>();
         builder.Services.AddValidatorsFromAssemblyContaining<PetsUpdateValidator>();
         builder.Services.AddValidatorsFromAssemblyContaining<ClientesUpdateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<UsuariosCreateValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<UsuariosUpdateValidator>();
 
-        builder.Services.AddTransient<IClientesRepository, ClientesRepository>();
-        builder.Services.AddTransient<IPetsRepository, PetsRepository>();
-        builder.Services.AddTransient<IClientesService, ClientesService>();
-        builder.Services.AddTransient<IPetsService, PetsService>();
-        builder.Services.AddTransient<IFileStorageService, FileStorageService>();
+        builder.Services.AddScoped<IClientesRepository, ClientesRepository>();
+        builder.Services.AddScoped<IPetsRepository, PetsRepository>();
+        builder.Services.AddScoped<IClientesService, ClientesService>();
+        builder.Services.AddScoped<IPetsService, PetsService>();
+        builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+        builder.Services.AddScoped<IUsuariosRepository, UsuariosRepository>();
+        builder.Services.AddScoped<IUsuariosServices, UsuariosServices>();
+        builder.Services.AddScoped<IAuthService, AuthService>();
 
         builder.Services.AddAutoMapper(cfg => { }, AppDomain.CurrentDomain.GetAssemblies());
 
@@ -114,19 +119,11 @@ public partial class Program
         });
 
         builder.Services.AddDbContext<GerenciamentoPetShopContext>(options =>
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("DefaultConnection"),
-            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure() // <-- A mágica está aqui!
-        ));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         var app = builder.Build();
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<GerenciamentoPetShopContext>();
-            db.Database.Migrate(); // Cria as tabelas se elas não existirem
-        }
-        app.UseMiddleware<GlobalExceptionMiddleware>();
+
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {

@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --cor-primaria: #ffffff;
+  --cor-secundaria: #470808;
+  --cor-tabela: #533a3a;
+  --cor-active: #3d0505;
+  --fonte-padrao: 'Arial', sans-serif;
+}
+
+

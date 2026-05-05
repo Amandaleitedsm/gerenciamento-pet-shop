@@ -7,10 +7,12 @@ namespace Gerenciamento_PetShop.Infraestrutura
     {
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Pets> Pets { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
 
         public GerenciamentoPetShopContext(DbContextOptions<GerenciamentoPetShopContext> options)
         : base(options)
         {
         }
+
     }
 }

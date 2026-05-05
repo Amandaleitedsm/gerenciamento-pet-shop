@@ -11,6 +11,7 @@ namespace Gerenciamento_PetShop.Domain.Interfaces
         Clientes? Get(int id);
         void Update(Clientes cliente);
         List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity);
+        List<RelatorioClientesResponse> GetRelatorioPorCliente(int id);
         List<RelatorioPetsPorTipo> GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal);
     }
 }

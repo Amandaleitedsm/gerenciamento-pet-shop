@@ -1,6 +1,8 @@
 ﻿using Asp.Versioning;
+using Gerenciamento_PetShop.Application.Interfaces;
 using Gerenciamento_PetShop.Application.Services;
 using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Presentation.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciamento_PetShop.Presentation.Controllers
@@ -10,15 +12,21 @@ namespace Gerenciamento_PetShop.Presentation.Controllers
     [Route("/v{version:apiVersion}/[controller]")]
     public class AuthController : Controller
     {
-        [HttpPost]
-        public IActionResult Auth(string username, string password)
+        private readonly IAuthService _authService;
+        private readonly IUsuariosServices _usuariosServices;
+
+        public AuthController(IAuthService authService, IUsuariosServices usuariosServices)
         {
-            if (username == "amanda" && password == "a1234")
-            {
-                var token = TokenService.GenerateToken(new Clientes(cpf: "55566677788", nome: username));
-                return Ok(token);
-            }
-            return BadRequest("username or password invalid");
+            _authService = authService;
+            _usuariosServices = usuariosServices;
+        }
+
+        [HttpPost]
+        public IActionResult Auth(AuthViewModel authViewModel)
+        {
+            var usuario = _usuariosServices.ObterUsuarioPorCpf(authViewModel.Cpf);
+            var token = _authService.ValidarUsuario(usuario, authViewModel.Cpf, authViewModel.Senha);
+            return Ok(token);
         }
     }
 }

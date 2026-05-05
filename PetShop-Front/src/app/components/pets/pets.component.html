@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Pets Cadastrados</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Porte</th>
+        <th>Dono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pet of listaPets">
+        <td>{{ pet.nome }}</td>
+        <td>{{ pet.tipoAnimal }}</td>
+        <td>{{ pet.porteAnimal }}</td>
+        <td class="nomeCliente" (click)="abrirDonoModal(pet.clienteId)">{{ pet.nomeCliente }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

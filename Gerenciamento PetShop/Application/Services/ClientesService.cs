@@ -14,8 +14,8 @@ namespace Gerenciamento_PetShop.Application.Services
         private readonly IFileStorageService _fileStorageService;
         private readonly IMapper _mapper;
         public ClientesService(
-            IClientesRepository clientesRepository, 
-            IFileStorageService fileStorageService, 
+            IClientesRepository clientesRepository,
+            IFileStorageService fileStorageService,
             IPetsRepository petsRepository,
             IMapper mapper
         )
@@ -60,17 +60,16 @@ namespace Gerenciamento_PetShop.Application.Services
             return _mapper.Map<List<ClientesResponse>>(clientes);
         }
 
-        public ClientesResponse GetClienteById (int id)
+        public ClientesResponse GetClienteById(int id)
         {
             var cliente = _clientesRepository.Get(id);
             if (cliente == null) return null;
             return _mapper.Map<ClientesResponse>(cliente);
         }
-        public ClientesResponse AtualizarCliente(int id, ClientesUpdateViewModel clientesViewModel)
+        public void AtualizarCliente(int id, ClientesUpdateViewModel clientesViewModel)
         {
-            throw new Exception("Testando o erro global!");
             var cliente = _clientesRepository.Get(id);
-            if (cliente == null) return null;
+            if (cliente == null) throw new ArgumentNullException(nameof(cliente));
             if (clientesViewModel.Nome != null) cliente.Nome = clientesViewModel.Nome;
             if (clientesViewModel.DataNascimento != null) cliente.Data_Nascimento = clientesViewModel.DataNascimento;
             if (clientesViewModel.Photo != null)
@@ -83,7 +82,6 @@ namespace Gerenciamento_PetShop.Application.Services
                 cliente.Photo = filePath;
             }
             _clientesRepository.Update(cliente);
-            return _mapper.Map<ClientesResponse>(cliente);
         }
 
         public List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity)
@@ -96,6 +94,12 @@ namespace Gerenciamento_PetShop.Application.Services
         {
             var clientes = _clientesRepository.GetRelatorioPetsPorTipo(pageNumber, pageQuantity, tipoAnimal);
             return clientes;
+        }
+
+        public List<RelatorioClientesResponse> GetRelatorioPorCliente(int id)
+        {
+            var cliente = _clientesRepository.GetRelatorioPorCliente(id);
+            return cliente;
         }
     }
 }

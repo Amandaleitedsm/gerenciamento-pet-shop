@@ -9,7 +9,7 @@ namespace Gerenciamento_PetShop.Application.Interfaces
         void AdicionarPet (PetsCreateViewModel petsViewModel);
         List<PetResponse> GetPets(int pageNumber, int pageQuantity);
         PetResponse GetPetById(int id);
-        PetResponse AtualizarPet (int id, PetsUpdateViewModel petsViewModel);
+        PetUpdateResponse AtualizarPet (int id, PetsUpdateViewModel petsViewModel);
         bool DeletarPet(int id);
     }
 }

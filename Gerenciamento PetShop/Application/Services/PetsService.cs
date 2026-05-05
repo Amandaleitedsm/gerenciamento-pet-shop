@@ -37,7 +37,7 @@ namespace Gerenciamento_PetShop.Application.Services
             return _mapper.Map<PetResponse>(pet); ;
         }
 
-        public PetResponse AtualizarPet(int id, PetsUpdateViewModel petsViewModel)
+        public PetUpdateResponse AtualizarPet(int id, PetsUpdateViewModel petsViewModel)
         {
             var pet = _petsRepository.Get(id);
             if (pet == null) return null;
@@ -46,7 +46,7 @@ namespace Gerenciamento_PetShop.Application.Services
             if (petsViewModel.PorteAnimal != 0) pet.PorteAnimal = petsViewModel.PorteAnimal;
             if (petsViewModel.ClienteId != 0) pet.ClienteId = petsViewModel.ClienteId;
             _petsRepository.Update(pet);
-            return _mapper.Map<PetResponse>(pet);
+            return _mapper.Map<PetUpdateResponse>(pet);
         }
 
         public bool DeletarPet(int id)

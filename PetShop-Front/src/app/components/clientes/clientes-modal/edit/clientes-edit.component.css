@@ -1,0 +1,93 @@
+/* Remove o scroll chato e deixa o conteúdo respirar */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: fit-content; /* Garante uma largura mínima legal */
+  overflow: hidden !important; /* Tira a barra de rolagem se não precisar */
+  padding: 20px !important;
+}
+
+/* Estilização do card azul (o seu modal-container) */
+.modal-container {
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-title {
+  text-align: center;
+  color: #3f51b5; /* Cor primária do Material */
+  font-weight: bold;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 0 !important;
+  padding-bottom: 15px;
+}
+
+/* Cabeçalho com Iniciais (Avatar) */
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.name-box .name-value {
+  margin: 0;
+  color: #333;
+  text-transform: capitalize;
+}
+
+/* Grid de Informações */
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+/* Labels e Valores */
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.value {
+  border-radius: 6px;
+  height: 2rem;
+  padding-left: 0.5rem;
+  font-size: 16px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Ajuste para botões */
+mat-dialog-actions {
+  padding: 25px;
+  border-top: 1px solid #f0f0f0;
+}

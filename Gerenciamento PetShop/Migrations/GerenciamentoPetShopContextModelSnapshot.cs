@@ -77,6 +77,27 @@ namespace Gerenciamento_PetShop.Migrations
                     b.ToTable("Pets");
                 });
 
+            modelBuilder.Entity("Gerenciamento_PetShop.Domain.Modelos.Usuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("Gerenciamento_PetShop.Domain.Modelos.Pets", b =>
                 {
                     b.HasOne("Gerenciamento_PetShop.Domain.Modelos.Clientes", "Cliente")

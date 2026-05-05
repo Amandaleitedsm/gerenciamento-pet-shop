@@ -1,5 +1,7 @@
 ﻿using Gerenciamento_PetShop.Domain.Interfaces;
 using Gerenciamento_PetShop.Domain.Modelos;
+using Gerenciamento_PetShop.Presentation.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gerenciamento_PetShop.Infraestrutura
 {
@@ -28,14 +30,21 @@ namespace Gerenciamento_PetShop.Infraestrutura
         {
             if (pageNumber < 1 && pageQuantity < 1) 
             {
-                return _context.Pets.ToList();
+                return _context.Pets
+                    .Include(p => p.Cliente)
+                    .ToList();
             }
-            return _context.Pets.Skip((pageNumber - 1) * pageQuantity).Take(pageQuantity).ToList();
+            return _context.Pets
+                .Include(p => p.Cliente)
+                .Skip((pageNumber - 1) * pageQuantity).Take(pageQuantity)
+                .ToList();
         }
 
         public Pets? Get(int id)
         {
-            return _context.Pets.Find(id);
+            return _context.Pets
+                .Include(p => p.Cliente)
+                .FirstOrDefault(p => p.Id == id);
         }
 
         public void Update(Pets pet)

@@ -1,0 +1,31 @@
+<h2 mat-dialog-title class="modal-title">Editar Cliente</h2>
+
+<mat-dialog-content class="modal-container">
+  <div class="profile-header">
+    <div class="avatar">{{ data.nome.charAt(0).toUpperCase() }}</div>
+    <div class="name-box">
+      <span class="label">CPF</span>
+      <h3 class="name-value">{{ data.cpf }}</h3>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="label">Nome do cliente</span>
+      <input type="text" class="value" [(ngModel)]="data.nome">
+    </div>
+
+    <div class="info-item">
+      <span class="label">Data de Nascimento</span>
+      <input type="date" class="value" [(ngModel)]="data.dataNascimento">
+    </div>
+
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Fechar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="submit()">OK</button>
+</mat-dialog-actions>

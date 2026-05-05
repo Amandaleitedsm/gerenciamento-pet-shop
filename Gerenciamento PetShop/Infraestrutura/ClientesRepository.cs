@@ -26,11 +26,9 @@ namespace Gerenciamento_PetShop.Infraestrutura
             if (pageNumber < 1 || pageQuantity < 1)
             {
                 return _context.Clientes
-                    .Include(c => c.Pets)
                     .ToList();
             }
             return _context.Clientes
-                .Include(c => c.Pets)
                 .Skip((pageNumber - 1) * pageQuantity)
                 .Take(pageQuantity)
                 .ToList();
@@ -41,6 +39,14 @@ namespace Gerenciamento_PetShop.Infraestrutura
             return _context.Clientes
                 .Include(c => c.Pets)
                 .FirstOrDefault(c => c.Id == id);
+        }
+
+        public List<RelatorioClientesResponse> GetRelatorioPorCliente(int id)
+        {
+            var parametroId = new SqlParameter("@id", id);
+            return _context.Database
+                .SqlQueryRaw<RelatorioClientesResponse>("EXEC RelatorioPorCliente @id", parametroId)
+                .ToList();
         }
 
         public List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity)

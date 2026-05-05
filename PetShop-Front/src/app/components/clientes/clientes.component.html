@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="header-page">
+    <h2>Pets Cadastrados</h2>
+    <button class="btn-cadastrar" (click)="abrirModalSemDados()">Cadastrar</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of listaClientes">
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cpf }}</td>
+        <td class="td-acoes">
+          <mat-icon class="mat-acoes" (click)="abrirModalCliente(cliente.id, 'view')">info</mat-icon>
+          <mat-icon class="mat-acoes" (click)="abrirModalCliente(cliente.id, 'edit')">edit</mat-icon>
+          <mat-icon class="mat-acoes" (click)="abrirModalCliente(cliente.id, 'delete')">delete</mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
