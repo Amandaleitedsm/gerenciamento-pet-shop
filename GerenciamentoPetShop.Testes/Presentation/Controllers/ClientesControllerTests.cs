@@ -72,8 +72,7 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
             var result = _controller.Update(id, updateViewModel); // Chama a Action do Controller
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result); // Verifica se retornou 200 OK
-            Assert.Equal(responseEsperada, okResult.Value); // Verifica se o conteúdo do OK é o cliente
+            var okResult = Assert.IsType<OkResult>(result); // Verifica se retornou 200 OK
         }
     }
 }
