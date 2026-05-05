@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # 1. O nosso novo Banco de Dados (SQL Server para Linux)
+  meu-banco-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SenhaFortePetShop123! # Senha do banco
+    ports:
+      - "1433:1433"
+
+  # 2. A sua API
+  minha-api:
+    build: . # Usa o seu Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Esta linha mágica substitui a ConnectionString do seu appsettings.json!
+      # Ela aponta direto para o nome do serviço do banco de dados (meu-banco-sql)
+      - ConnectionStrings__DefaultConnection=Server=meu-banco-sql;Database=PetShopDb;User=sa;Password=SenhaFortePetShop123!;TrustServerCertificate=True;
+    depends_on:
+      - meu-banco-sql # A API só liga depois que o banco estiver pronto

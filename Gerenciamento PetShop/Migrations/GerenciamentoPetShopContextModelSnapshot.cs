@@ -67,7 +67,7 @@ namespace Gerenciamento_PetShop.Migrations
                     b.Property<int>("PorteAnimal")
                         .HasColumnType("int");
 
-                    b.Property<int>("TipoAnimal")
+                    b.Property<int?>("TipoAnimal")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -75,6 +75,27 @@ namespace Gerenciamento_PetShop.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("Gerenciamento_PetShop.Domain.Modelos.Usuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Gerenciamento_PetShop.Domain.Modelos.Pets", b =>

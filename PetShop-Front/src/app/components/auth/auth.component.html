@@ -1,0 +1,29 @@
+<div class="main">
+  <div class="div-login">
+    <h1>Bem-vindo (a)</h1>
+    <form action="">
+
+      <label class="label-form">CPF</label><br>
+
+      <input
+        type="text"
+        placeholder="Digite aqui seu CPF"
+        [(ngModel)]="authData.cpf"
+        name="cpf"
+      ><br>
+
+      <label class="label-form">Senha</label><br>
+
+      <input
+        type="password"
+        placeholder="Digite aqui sua senha"
+        [(ngModel)]="authData.senha"
+        name="senha"
+      ><br>
+
+      <button type="submit" class="btn-principal" (click)="autenticar()">Entrar
+      </button>
+    </form>
+  </div>
+</div>
+

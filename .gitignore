@@ -1,7 +1,10 @@
 .vs
 [Bb]in
-[Ob]j
-.user
-.suo
-.userosscache
-.sln.docstates
+Gerenciamento PetShop/[Oo]bj
+Gerenciamento PetShop/[Uu]ser
+Gerenciamento PetShop/[Ss]uo
+Gerenciamento PetShop/[Uu]serosscache
+Gerenciamento PetShop/[Ss]ln.docstates
+Gerenciamento PetShop.Testes/[Oo]bj
+*.txt
+Gerenciamento PetShop/Logs

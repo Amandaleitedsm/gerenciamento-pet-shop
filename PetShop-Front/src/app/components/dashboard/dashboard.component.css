@@ -1,0 +1,31 @@
+.main {
+  background-color: var(--cor-primaria);
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--fonte-padrao);
+}
+
+.sec {
+  background-color: var(--cor-secundaria);
+  height: 30px;
+  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-primaria);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.sec:hover {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--cor-secundaria);
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+}

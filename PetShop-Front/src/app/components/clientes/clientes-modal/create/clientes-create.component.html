@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="modal-title">Criar novo Cliente</h2>
+
+<mat-dialog-content class="modal-container">
+
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="label">CPF</span>
+      <input type="text" class="value" [(ngModel)]="data.cpf">
+    </div>
+
+    <div class="info-item">
+      <span class="label">Nome do cliente</span>
+      <input type="text" class="value" [(ngModel)]="data.nome">
+    </div>
+
+    <div class="info-item">
+      <span class="label">Data de Nascimento</span>
+      <input type="date" class="value" [(ngModel)]="data.dataNascimento">
+    </div>
+
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Fechar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" mat-raised-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="!data.nome || !data.cpf">OK</button>
+</mat-dialog-actions>

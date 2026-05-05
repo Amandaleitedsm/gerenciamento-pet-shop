@@ -1,0 +1,78 @@
+.container {
+  padding: 20px;
+  font-family: var(--fonte-padrao);
+}
+
+h2 {
+  color: var(--cor-secundaria);
+  margin-bottom: 15px;
+}
+
+/* Estrutura da Tabela */
+table {
+  width: 100%;
+  table-layout: fixed; /* Força as larguras das colunas a serem respeitadas */
+  border-collapse: collapse;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Cabeçalho e Células */
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background-color: #533a3a;
+  color: #ffffff;
+  border-bottom: 2px solid #ccc;
+}
+
+/* --- AJUSTE DE ALINHAMENTO (SPACE-BETWEEN) --- */
+
+/* Primeira coluna: Nome (Gruda na esquerda) */
+th:first-child, td:first-child {
+  width: 30px;
+}
+
+/* Colunas do meio: Tipo e Porte (Centralizadas para equilíbrio) */
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3) {
+  width: 20px;
+}
+
+/* Última coluna: Dono (Gruda na direita) */
+th:last-child, td:last-child {
+  width: 30px;
+}
+
+/* --- CORES INTERCALADAS --- */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+  color: #533a3a;
+}
+
+.nomeCliente{
+  cursor: pointer;
+}
+
+.nomeCliente:hover {
+  background-color: #e4e2e2;
+}
+
+.nomeCliente:active{
+  background-color: #dbdbdb;
+}

@@ -67,11 +67,6 @@ namespace GerenciamentoPetShop.Testes.Presentation.Controllers
             var updateViewModel = new ClientesUpdateViewModel { Nome = "Cliente Atualizado" };
             var responseEsperada = new ClientesResponse { CPF = "12312312323", Nome = "Cliente Atualizado" };
 
-            // Configura o Mock para retornar o DTO quando o service for chamado
-            _serviceMock
-                .Setup(s => s.AtualizarCliente(id, updateViewModel))
-                .Returns(responseEsperada);
-
 
             // Act
             var result = _controller.Update(id, updateViewModel); // Chama a Action do Controller

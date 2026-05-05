@@ -1,0 +1,39 @@
+<h2 mat-dialog-title class="modal-title">Detalhes do Cliente</h2>
+
+<mat-dialog-content class="modal-container">
+  <div class="profile-header">
+    <div class="avatar">{{ data.nomeCliente.charAt(0).toUpperCase() }}</div>
+    <div class="name-box">
+      <span class="label">Nome Completo</span>
+      <h3 class="name-value">{{ data.nomeCliente | titlecase }}</h3>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="label">ID do Registro</span>
+      <span class="value">#{{ data.id }}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="label">CPF</span>
+      <span class="value">{{ data.cpf }}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="label">Data de Nascimento</span>
+      <span class="value">{{ (data.dataNascimento | date:'dd/MM/yyyy') || 'Não informado' }}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="label">Quantidade de pets</span>
+      <span class="value">{{ data.quantidadePets }}</span>
+    </div>
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">OK</button>
+</mat-dialog-actions>

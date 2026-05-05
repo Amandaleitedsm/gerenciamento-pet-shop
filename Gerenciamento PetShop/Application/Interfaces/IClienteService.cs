@@ -10,6 +10,9 @@ namespace Gerenciamento_PetShop.Application.Interfaces
         byte[] Baixar(int id);
         List<ClientesResponse> GetClientes(int pageNumber, int pageQuantity);
         ClientesResponse GetClienteById(int id);
-        ClientesResponse AtualizarCliente(int id, ClientesUpdateViewModel clientesViewModel);
+        void AtualizarCliente(int id, ClientesUpdateViewModel clientesViewModel);
+        List<RelatorioClientesResponse> GetRelatorioClientes(int pageNumber, int pageQuantity);
+        List<RelatorioClientesResponse> GetRelatorioPorCliente(int id);
+        List<RelatorioPetsPorTipo> GetRelatorioPetsPorTipo(int pageNumber, int pageQuantity, int tipoAnimal);
     }
 }
